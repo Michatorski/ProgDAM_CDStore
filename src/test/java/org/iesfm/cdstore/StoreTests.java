@@ -3,6 +3,7 @@ package org.iesfm.cdstore;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -23,7 +24,7 @@ public class StoreTests {
         disks.add(new Disk("", "Artista2", genres));
         disks.add(new Disk("", "Artista3", new HashSet<>() ) );
 
-        store = new Store("", "", new TreeSet <Disk>(), new TreeSet<Member>());
+        store = new Store("", "", new HashMap<>(), new HashMap<>());
 
         TreeSet <Disk> metalDisk = store.getDisks("Metal");
 

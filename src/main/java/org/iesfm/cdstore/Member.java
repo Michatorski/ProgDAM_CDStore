@@ -1,5 +1,6 @@
 package org.iesfm.cdstore;
 
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.TreeSet;
 
@@ -8,9 +9,9 @@ public class Member {
     private String surname;
     private String nif;
     private int cp;
-    private TreeSet<Order> orders;
+    private LinkedList<Order> orders;
 
-    public Member(String name, String surname, String nif, int cp, TreeSet<Order> orders) {
+    public Member(String name, String surname, String nif, int cp, LinkedList<Order> orders) {
         this.name = name;
         this.surname = surname;
         this.nif = nif;
@@ -50,11 +51,11 @@ public class Member {
         this.cp = cp;
     }
 
-    public TreeSet<Order> getOrders() {
+    public LinkedList<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(TreeSet<Order> orders) {
+    public void setOrders(LinkedList<Order> orders) {
         this.orders = orders;
     }
 

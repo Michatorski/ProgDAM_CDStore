@@ -3,7 +3,7 @@ package org.iesfm.cdstore;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Disk {
+public class  Disk implements Comparable<Disk> {
     private String title;
     private String artist;
     private HashSet<String> genres;
@@ -56,5 +56,10 @@ public class Disk {
     @Override
     public int hashCode() {
         return Objects.hash(title, artist, genres);
+    }
+
+    @Override
+    public int compareTo(Disk o) {
+        return  this.title.compareTo(o.getTitle() );
     }
 }
