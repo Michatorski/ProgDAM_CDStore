@@ -41,7 +41,7 @@ public class StoreTests {
     @Test
     public void getDiskTest(){
 
-        //Aun por corregir
+        //Aun por corregir No se como se hace
 
     Disk [] disk = new Disk[3];
     HashSet<String> genres = new HashSet<>();
