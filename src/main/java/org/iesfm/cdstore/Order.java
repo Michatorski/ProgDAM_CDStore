@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Order {
     private int price;
-    private int date;
+    private String date;
 
-    public Order(int price, int date) {
+    public Order(int price, String date) {
         this.price = price;
         this.date = date;
     }
@@ -19,11 +19,11 @@ public class Order {
         this.price = price;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -33,7 +33,7 @@ public class Order {
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
         return price == order.price &&
-                date == order.date;
+                Objects.equals(date, order.date);
     }
 
     @Override

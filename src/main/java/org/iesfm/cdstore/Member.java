@@ -2,7 +2,6 @@ package org.iesfm.cdstore;
 
 import java.util.LinkedList;
 import java.util.Objects;
-import java.util.TreeSet;
 
 public class Member {
     private String name;
@@ -19,13 +18,10 @@ public class Member {
         this.orders = orders;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     public String getSurname() {
         return surname;

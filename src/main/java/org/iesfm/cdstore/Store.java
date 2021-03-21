@@ -1,9 +1,14 @@
 package org.iesfm.cdstore;
 
+
+
+
+import java.util.*;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Objects;
+import java.util.LinkedList;
 import java.util.TreeSet;
+
 
 public class Store implements IStore{
     private String name;
@@ -32,25 +37,99 @@ public class Store implements IStore{
 
     @Override
     public Disk getDisk(String title) {
+
         return catalog.get(title);
     }
 
     @Override
     public HashSet<Member> getMembers(int cp) {
-        HashSet<Member> cpMewmbers = new HashSet<>();
+        HashSet<Member> myMembers = new HashSet<>();
 
-
-        return null;
+        for (Member member : members.values()){
+            if (member.getCp() == cp){
+                myMembers.add(member);
+            }
+        }
+        return myMembers;
     }
+
 
     @Override
     public  TreeSet<Disk> findAuthorDisks (String artist){
+        TreeSet<Disk> authorDisk = new TreeSet<>();
         for(Disk disk : catalog.values()){
             if(disk.getArtist().equals(artist)){
-                disk.getArtist();
+                authorDisk.add(disk);
             }
         }
+
+        return authorDisk;
     }
+
+    //A corregir
+    @Override
+    public LinkedList<Order> getOrder(String nif) {
+        LinkedList<Order> memberOrder = new LinkedList<>();
+        HashSet<Member> members = new HashSet<>();
+
+        for (Member member : members){
+            if (member.getNif().equals(nif)){
+                member.getOrders();
+            }
+        }
+
+        return memberOrder;
+    }
+
+    //A corregir/comprobar
+    @Override
+    public HashSet<Member> getMemberSpend(String nif) {
+        HashSet<Member> spend = new HashSet<>();
+        Order orderPrices = null;
+
+        for (Member member : members.values()){
+            if (member.getNif().equals(nif)){
+                orderPrices.getPrice();
+            }
+        }
+
+        return spend;
+    }
+
+    @Override
+    public int countNumberDisks(String artist) {
+        int numbersDisk = 0;
+
+        for(Disk disk : catalog.values()){
+            if(disk.getArtist().equals(artist)){
+                numbersDisk++;
+            }
+        }
+
+        return numbersDisk;
+    }
+
+    @Override
+
+    public TreeSet<Disk> removeDisk(String title) {
+        TreeSet<Disk> removedDisk = new TreeSet<>();
+        for(Disk disk : catalog.values()){
+            if(disk.getTitle().equals(title)){
+                removedDisk.remove(disk);
+            }
+        }
+        return removedDisk;
+    }
+
+    @Override
+    public TreeSet<Disk> insertDisk( Disk newDisk) {
+        TreeSet<Disk> addedDisk = new TreeSet<>();
+
+        addedDisk.add(newDisk);
+
+        return addedDisk;
+    }
+
 
 
     public String getName() {
@@ -97,4 +176,5 @@ public class Store implements IStore{
     public int hashCode() {
         return Objects.hash(name, adress, catalog, members);
     }
+
 }

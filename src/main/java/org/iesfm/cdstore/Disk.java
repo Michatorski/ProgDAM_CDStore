@@ -16,8 +16,9 @@ public class  Disk implements Comparable<Disk> {
 
      public  boolean hasGenre (String genre){
         return genres.contains(genre);
-
     }
+
+
 
     public String getTitle() {
         return title;
