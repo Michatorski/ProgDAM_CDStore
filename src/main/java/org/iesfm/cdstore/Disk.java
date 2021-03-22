@@ -18,8 +18,12 @@ public class  Disk implements Comparable<Disk> {
         return genres.contains(genre);
     }
 
+    @Override
+    public int compareTo(Disk o) {
+        return  this.title.compareTo(o.getTitle() );
+    }
 
-
+    
     public String getTitle() {
         return title;
     }
@@ -59,8 +63,5 @@ public class  Disk implements Comparable<Disk> {
         return Objects.hash(title, artist, genres);
     }
 
-    @Override
-    public int compareTo(Disk o) {
-        return  this.title.compareTo(o.getTitle() );
-    }
+
 }

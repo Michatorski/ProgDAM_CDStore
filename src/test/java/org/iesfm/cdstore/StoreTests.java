@@ -1,5 +1,6 @@
 package org.iesfm.cdstore;
 
+import org.iesfm.cdstore.exception.MemberNotFoundException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -102,7 +103,7 @@ public class StoreTests {
     }
 
     @Test
-    public void getOrderTest(){
+    public void getOrderTest() throws MemberNotFoundException {
         members =  new HashSet<>();
 
         orders =  new LinkedList<>();
@@ -118,7 +119,7 @@ public class StoreTests {
 
         store = new Store("", "", new HashMap<>(), new HashMap<>());
 
-        LinkedList orderFound = store.getOrder("X");
+        LinkedList orderFound = store.getMemberOrders("X");
 
         LinkedList<Order> expectedOrder = new LinkedList<>();
         members.add(new Member("Name1", "", nif, 0, orders));

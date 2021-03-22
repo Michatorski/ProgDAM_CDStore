@@ -1,7 +1,7 @@
 package org.iesfm.cdstore;
 
 
-
+import org.iesfm.cdstore.exception.MemberNotFoundException;
 
 import java.util.*;
 import java.util.HashMap;
@@ -10,11 +10,11 @@ import java.util.LinkedList;
 import java.util.TreeSet;
 
 
-public class Store implements IStore{
+public class Store implements IStore {
     private String name;
     private String adress;
-    private HashMap<String ,Disk> catalog;
-    private HashMap<String ,Member> members;
+    private HashMap<String, Disk> catalog;
+    private HashMap<String, Member> members;
 
     public Store(String name, String adress, HashMap<String, Disk> catalog, HashMap<String, Member> members) {
         this.name = name;
@@ -27,8 +27,8 @@ public class Store implements IStore{
     public TreeSet<Disk> getDisks(String genre) {
         TreeSet<Disk> genreDisks = new TreeSet<>();
 
-        for(Disk disk : catalog.values()){
-            if(disk.hasGenre(genre)){
+        for (Disk disk : catalog.values()) {
+            if (disk.hasGenre(genre)) {
                 genreDisks.add(disk);
             }
         }
@@ -45,8 +45,8 @@ public class Store implements IStore{
     public HashSet<Member> getMembers(int cp) {
         HashSet<Member> myMembers = new HashSet<>();
 
-        for (Member member : members.values()){
-            if (member.getCp() == cp){
+        for (Member member : members.values()) {
+            if (member.getCp() == cp) {
                 myMembers.add(member);
             }
         }
@@ -55,10 +55,10 @@ public class Store implements IStore{
 
 
     @Override
-    public  TreeSet<Disk> findAuthorDisks (String artist){
+    public TreeSet<Disk> findAuthorDisks(String artist) {
         TreeSet<Disk> authorDisk = new TreeSet<>();
-        for(Disk disk : catalog.values()){
-            if(disk.getArtist().equals(artist)){
+        for (Disk disk : catalog.values()) {
+            if (disk.getArtist().equals(artist)) {
                 authorDisk.add(disk);
             }
         }
@@ -66,19 +66,17 @@ public class Store implements IStore{
         return authorDisk;
     }
 
-    //A corregir
+
     @Override
-    public LinkedList<Order> getOrder(String nif) {
-        LinkedList<Order> memberOrder = new LinkedList<>();
-        HashSet<Member> members = new HashSet<>();
+    public LinkedList<Order> getMemberOrders(String nif) throws MemberNotFoundException {
 
-        for (Member member : members){
-            if (member.getNif().equals(nif)){
-                member.getOrders();
-            }
+        Member member = members.get(nif);
+
+        if (member == null) {
+            throw new MemberNotFoundException();
         }
+        return member.getOrders();
 
-        return memberOrder;
     }
 
     //A corregir/comprobar
@@ -87,8 +85,8 @@ public class Store implements IStore{
         HashSet<Member> spend = new HashSet<>();
         Order orderPrices = null;
 
-        for (Member member : members.values()){
-            if (member.getNif().equals(nif)){
+        for (Member member : members.values()) {
+            if (member.getNif().equals(nif)) {
                 orderPrices.getPrice();
             }
         }
@@ -100,8 +98,8 @@ public class Store implements IStore{
     public int countNumberDisks(String artist) {
         int numbersDisk = 0;
 
-        for(Disk disk : catalog.values()){
-            if(disk.getArtist().equals(artist)){
+        for (Disk disk : catalog.values()) {
+            if (disk.getArtist().equals(artist)) {
                 numbersDisk++;
             }
         }
@@ -113,8 +111,8 @@ public class Store implements IStore{
 
     public TreeSet<Disk> removeDisk(String title) {
         TreeSet<Disk> removedDisk = new TreeSet<>();
-        for(Disk disk : catalog.values()){
-            if(disk.getTitle().equals(title)){
+        for (Disk disk : catalog.values()) {
+            if (disk.getTitle().equals(title)) {
                 removedDisk.remove(disk);
             }
         }
@@ -122,14 +120,13 @@ public class Store implements IStore{
     }
 
     @Override
-    public TreeSet<Disk> insertDisk( Disk newDisk) {
+    public TreeSet<Disk> insertDisk(Disk newDisk) {
         TreeSet<Disk> addedDisk = new TreeSet<>();
 
         addedDisk.add(newDisk);
 
         return addedDisk;
     }
-
 
 
     public String getName() {

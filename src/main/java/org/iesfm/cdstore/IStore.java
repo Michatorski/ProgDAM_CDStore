@@ -1,5 +1,7 @@
 package org.iesfm.cdstore;
 
+import org.iesfm.cdstore.exception.MemberNotFoundException;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -37,11 +39,12 @@ public interface IStore {
      TreeSet<Disk> findAuthorDisks(String artist);
 
      /**
-      * Devuelve los pedidos de un socio dado su NIF.
+      *  Devuelve los pedidos de un socio dado su NIF.
       * @param nif
-      * @return order
+      * @return Pedidos de un socio
+      * @throws MemberNotFoundException si no ecuentra socio lanza excepcion
       */
-     LinkedList<Order> getOrder (String nif);
+     LinkedList<Order> getMemberOrders (String nif) throws MemberNotFoundException;
 
      /**
       * Devuelve cuánto se ha gastado un socio en total dado su NIF.
